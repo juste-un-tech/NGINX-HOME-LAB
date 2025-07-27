@@ -13,5 +13,6 @@
     - name: Disable SELinux permanently
       ansible.posix.selinux:
         state: disabled
+    
     - name: Disable SELinux immediately 
       command: setenforce 0
