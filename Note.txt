@@ -1,0 +1,4 @@
+Note :
+
+Of course, there are some additional configurations that are not included in this project, such as system updates, permission settings, and verification of configuration files. These steps are important but were skipped here for simplicity and clarity.
+Also, the SSH key deployment script is meant to automate the SSH key copying process between the master and slave machines. Please note that all VMs must have the same root password for the automation to work properly.
