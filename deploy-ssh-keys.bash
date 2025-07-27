@@ -1,7 +1,7 @@
 #!/bin/bash
 
 user="root"
-password="d"
+password="p@ssw0rd1234"
 subnet="192.168.1"
 
 for i in {11..13}; do
