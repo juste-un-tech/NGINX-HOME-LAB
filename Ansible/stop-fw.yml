@@ -1,0 +1,17 @@
+---
+- name: Disable firewall and SELinux
+  hosts: web
+  become: true
+
+  tasks:
+    - name: Stop firewall
+      command: systemctl stop firewalld
+
+    - name: Disable firewall
+      command: systemctl disable firewalld
+
+    - name: Disable SELinux permanently
+      ansible.posix.selinux:
+        state: disabled
+    - name: Disable SELinux immediately 
+      command: setenforce 0

@@ -1,0 +1,55 @@
+---
+- name: Copy websites and Apache config from Master to Slaves
+  hosts: web
+  become: yes
+
+  tasks:
+
+    - name: Installing Apache server
+      command: yum install httpd -y
+
+    - name: Enable and start Apache
+      systemd:
+        name: httpd
+        enabled: yes
+        state: started
+
+    - name: Create site one directory
+      file:
+        path: /var/www/one
+        state: directory
+        mode: '0755'
+
+    - name: Create site two directory
+      file:
+        path: /var/www/two
+        state: directory
+        mode: '0755'
+
+    - name: Copy Website One
+      copy:
+        src: /etc/ansible/one/
+        dest: /var/www/one/
+        mode: '0644'
+        owner: root
+        group: root
+
+    - name: Copy Website Two
+      copy:
+        src: /etc/ansible/two/
+        dest: /var/www/two/
+        mode: '0644'
+        owner: root
+        group: root
+
+    - name: Copy Apache config file
+      copy:
+        src: /etc/ansible/sites.conf
+        dest: /etc/httpd/conf.d/sites.conf
+        mode: '0644'
+
+    - name: Restart Apache
+      systemd:
+        name: httpd
+        state: restarted
+
